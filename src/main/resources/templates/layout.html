@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<title>Inventory Management</title>
+	<link href="../static/images/logo.png" th:href="@{/images/logo.png}" rel="shortcut icon" />
+
+
+	<!-- Bootstrap CSS -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+	<!-- Font Awesome -->
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+	<!-- Custom style -->
+	<link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<nav th:fragment="header" class="navbar navbar-dark bg-dark">
+		<h4><a class="navbar-brand" th:href="@{/}" style="font-size: 24px">Inventory Management</a></h4>
+         <a th:href="@{/logout}" style="color:#FFFFFF;">sign out</a>
+	</nav>
+
+<div th:fragment="sidebar" class="w3-sidebar w3-light-grey w3-bar-block " style="width:20%">
+  <h4 class="w3-bar-item  w3-gray">Menu</h4>
+  <h5> <a th:href="@{/admin/emp}" class="w3-bar-item w3-button">Employee List</a> </h5>
+   <div class="w3-dropdown-hover">
+    <h5><button class="w3-button"> Product Management
+      <i class="fa fa-caret-down"></i>
+    </button></h5>
+    <div class="w3-dropdown-content w3-bar-block">
+      <h6><a th:href="@{/admin/products}" class="w3-bar-item w3-button">For Admin</a></h6>
+      <h6><a th:href="@{/employee/products}" class="w3-bar-item w3-button">For Employee</a></h6>
+    </div>
+  </div>
+     <div class="w3-dropdown-hover">
+    <h5><button class="w3-button">Statistic
+      <i class="fa fa-caret-down"></i>
+    </button></h5>
+    <div class="w3-dropdown-content w3-bar-block">
+      <h6><a th:href="@{/statistic/import}" class="w3-bar-item w3-button">Product Imports</a></h6>
+      <h6><a th:href="@{/statistic/export}" class="w3-bar-item w3-button">Product Exports</a></h6>
+    </div>
+  </div>
+</div>
+
+	<h1>Main content</h1>
+
+	<footer th:fragment="footer" class="container">
+		<strong>&copy;2019 </strong>
+	</footer>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<body>
+
+<nav th:replace="layout :: header"></nav>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+          <h2>1.  <a th:href="@{/employee/products}"> Product Management</a></h2>
+          <h2>2.  <a th:href="@{/statistic/import}">Statistic import</a></h2>
+          <h2>2.  <a th:href="@{/statistic/export}">Statistic export</a></h2>
+
+
+    </div>
+
+</div>
+<!-- /.container -->
+
+<footer th:replace="layout :: footer"></footer>
+
+</body>
+</html>

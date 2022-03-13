@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+
+<body>
+	<nav th:replace="layout :: header"></nav>
+	<nav th:replace="layout :: sidebar"></nav>
+	<div class="container"  id="main-content" style="margin-left:20%;width:80%">
+		<div class="row d-flex justify-content-center">
+			<form style="min-width: 300px;" action="#"
+				th:action="@{/product/import_new}" th:object="${entity}"
+				method="post" novalidate="novalidate">
+				<h4 class="text-center">Import form</h4>
+
+				<input type="hidden" th:field="*{productId}" />
+
+				<div class="form-group">
+					<input class="form-control" type="text" placeholder="Product name"
+						th:field="*{productName}" th:readonly="true" />
+				</div>
+
+                <div class="form-group">
+                    <input class="form-control" type="number"
+                        placeholder="Product price" th:field="*{price}" th:readonly="true" />
+                </div>
+
+				<div class="form-group">
+					<input class="form-control" type="number"
+						placeholder="Import products number" th:field="*{number}"
+						th:errorclass="field-error" /> <em
+						th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></em>
+				</div>
+
+				<div class="form-group">
+					<input class="form-control" type="text" placeholder="Import date"
+						th:field="*{date}" th:errorclass="field-error" /> <em
+						th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></em>
+				</div>
+
+				<div class="form-group">
+					<button type="submit" class="btn btn-block btn-primary">
+						<i class="fa fa-save"></i> Save
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!-- /.container -->
+
+	<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+
+<body>
+	<nav th:replace="layout :: header"></nav>
+	<nav th:replace="layout :: sidebar"></nav>
+	<div class="container"  id="main-content" style="margin-left:20%;width:80%">
+
+		<form class="form-inline" action="#"
+			th:action="@{/statistic/import/search}" method="get">
+			<div class="form-row">
+			<div class="form-group col-md-4">
+				<input type="search" class="form-control" name = "product_name"  placeholder="product name ...">
+			</div>
+			<div class="form-group col-md-4">
+				<input type="search" class="form-control" name = "product_id" id ="inputProductId" placeholder="product Id ...">
+			</div>
+			<div class="form-group col-md-4">
+				<input type="search" class="form-control" name = "number" id = "inputNumber" placeholder="number ...">
+			</div>
+			</div>
+			<div class="form-row">
+			<div class="form-group col-md-4">
+				<input type="search" class="form-control" name = "employee_name" id = "inputEmployeeName" placeholder="employee name ...">
+			</div>
+			<div class="form-group col-md-4">
+				<input type="search" class="form-control" name = "employee_id" id = "inputEmployeeId" placeholder="employee id ...">
+			</div>
+			<div class="form-group col-md-4">
+				<input type="search" class="form-control" name = "date" id = "inputDate" placeholder="yyyy-MM-dd ...">
+			</div>
+			</div>
+			<button class="btn btn-primary" type="submit" th:name = "action" th:value = "search">
+				<i class="fa fa-search"></i> Search
+			</button>
+			<button class="btn btn-primary" type = "submit" th:name = "action" th:value = "CSV"> ExportCSV </button>
+		</form>
+
+
+
+		<div class="row mt-4">
+			<div th:if="${successMessage}"
+				class="col-12 alert alert-success alert-dismissible fade show"
+				role="alert">
+				<span th:text="${successMessage}"></span>
+				<button type="button" class="close" data-dismiss="alert"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<th:block th:if="${#lists.isEmpty(imports)}">
+				<h5>No Import</h5>
+			</th:block>
+
+			<th:block th:unless="${#lists.isEmpty(imports)}">
+				<div class="table-responsive">
+					<h5>Statistic import product</h5>
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Product ID</th>
+								<th>Product name</th>
+                                <th>Price</th>
+								<th>User Id</th>
+								<th>User name</th>
+								<th>Number</th>
+								<th>Import date</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="import,iterStat : ${imports}">
+								<th scope="row" th:text="${iterStat.count}"></th>
+								<td th:text="${import.productId}"></td>
+								<td th:text="${import.productName}"></td>
+                                <td th:text="${import.price}"></td>
+								<td th:text="${import.userId}"></td>
+								<td th:text="${import.userName}"></td>
+								<td th:text="${import.number}"></td>
+								<td th:text="${import.date}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</th:block>
+		</div>
+	</div>
+	<!-- /.container -->
+
+	<footer th:replace="layout :: footer"></footer>
+
+</body>
+</html>

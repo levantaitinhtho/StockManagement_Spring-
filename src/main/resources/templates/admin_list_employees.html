@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+
+<body>
+	<nav th:replace="layout :: header"></nav>
+	<nav th:replace="layout :: sidebar"></nav>
+	<div class="container"  id="main-content" style="margin-left:20%;width:80%" >
+		<div class="row">
+			<div class="col-6 no-padding">
+				<form class="form-inline" action="#" th:action="@{/admin/emp/search}" method="get">
+					<input class="form-control mr-sm-2" type="search" name="term" placeholder="Search by name ..." />
+					<button class="btn btn-primary" type="submit">
+						<i class="fa fa-search"></i> Search
+					</button>
+				</form>
+			</div>
+
+			<div class="col-6 no-padding">
+				<a href="#" th:href="@{/admin/emp/add}" class="btn btn-success float-right">
+					<i class="fa fa-plus-square"></i> New employee
+				</a>
+			</div>
+		</div>
+
+		<div class="row mt-4">
+			<div th:if="${successMessage}" class="col-12 alert alert-success alert-dismissible fade show" role="alert">
+				<span th:text="${successMessage}"></span>
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<th:block th:if="${#lists.isEmpty(employees)}">
+				<h5>No employee</h5>
+			</th:block>
+
+			<th:block th:unless="${#lists.isEmpty(employees)}">
+				<div class="table-responsive">
+					<h5>List of employees</h5>
+					<table class="table table-bordered table-hover">
+						<thead>
+						<tr>
+							<th>#</th>
+							<th>ID</th>
+							<th>Employee Name</th>
+							<th>Password</th>
+							<th>Status</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="employee,iterStat : ${employees}">
+							<th scope="row" th:text="${iterStat.count}"></th>
+							<td th:text="${employee.id}"></td>
+							<td th:text="${employee.userName}"></td>
+							<td th:text="${employee.rawPassword}"></td>
+							<td th:text="${employee.status}"></td>
+							<td>
+								<a href="#" th:href="@{/admin/emp/{id}/deactive(id=${employee.id})}" class="btn btn-outline-dark">
+									<i class="fa fa-plus-square"></i>Deactive
+								</a>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</th:block>
+		</div>
+	</div><!-- /.container -->
+
+	<footer th:replace="layout :: footer"></footer>
+
+</body>
+</html>

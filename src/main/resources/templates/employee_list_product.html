@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+
+<body>
+	<nav th:replace="layout :: header"></nav>
+	<nav th:replace="layout :: sidebar"></nav>
+	<div class="container"  id="main-content" style="margin-left:20%;width:80%">
+		<div class="row">
+			<div class="col-6 no-padding">
+				<form class="form-inline" action="#" th:action="@{/admin/product/search}" method="get">
+					<input class="form-control mr-sm-2" type="search" name="term" placeholder="Search by name ..." />
+					<button class="btn btn-primary" type="submit">
+						<i class="fa fa-search"></i> Search
+					</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="row mt-4">
+
+			<th:block th:if="${#lists.isEmpty(products)}">
+				<h5>No product</h5>
+			</th:block>
+
+			<th:block th:unless="${#lists.isEmpty(products)}">
+				<div class="table-responsive">
+					<h5>List of products</h5>
+					<table class="table table-bordered table-hover">
+						<thead>
+						<tr>
+							<th>#</th>
+							<th>ID</th>
+							<th>Name</th>
+                            <th>Price</th>
+							<th>Number</th>
+							<th>Producer</th>
+							<th>Import date</th>
+							<th> Import </th>
+							<th> Export </th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:each="product,iterStat : ${products}">
+							<th scope="row" th:text="${iterStat.count}"></th>
+							<td th:text="${product.id}"></td>
+							<td th:text="${product.nameProduct}"></td>
+                            <td th:text="${product.price}"></td>
+							<td th:text="${product.number}"></td>
+							<td th:text="${product.producer}"></td>
+							<td th:text="${product.importDate}"></td>
+							<td>
+									<a href="#" th:href="@{/product/{id}/import(id = ${product.id})}" class="btn btn-outline-dark"  >
+										<i class="fa fa-plus-square"></i> import
+									</a>
+								</td>
+								<td>
+				<a href="#" th:href="@{/product/{id}/export(id = ${product.id})}" class="btn btn-outline-dark">
+					<i class="fa fa-plus-square"></i> export
+				</a>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</th:block>
+		</div>
+	</div><!-- /.container -->
+
+	<footer th:replace="layout :: footer"></footer>
+
+</body>
+</html>
