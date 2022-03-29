@@ -11,7 +11,7 @@ public class DTObject {
     private Integer productId;
     private String productName;
     private Integer employeeId;
-    private String emploeeName;
+    private String emploeeyName;
     private Integer number;
     private String date;
 }
