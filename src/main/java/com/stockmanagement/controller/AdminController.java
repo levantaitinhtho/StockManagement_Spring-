@@ -31,7 +31,7 @@ public class AdminController {
     @GetMapping("/admin/products")
     public String listProduct(Model model) {
         model.addAttribute("products", productService.getAllProduct());
-        return "admin_list_product";
+        return "admin_list_product.html";
     }
 
     @GetMapping("/admin/product/search")
@@ -116,7 +116,5 @@ public class AdminController {
         redirect.addFlashAttribute("successMessage", "Deactive employee successfully!");
         return "redirect:/admin/emp";
     }
-
-
 
 }

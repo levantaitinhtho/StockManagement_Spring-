@@ -48,7 +48,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void deactiveEmployee(Integer id) {
         employeeRepository.deactiveEmployee(id);
-
     }
 
     @Override
