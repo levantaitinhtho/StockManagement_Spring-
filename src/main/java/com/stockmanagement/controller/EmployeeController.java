@@ -63,14 +63,14 @@ public class EmployeeController {
         return "import_form";
     }
 
-    @PostMapping("/product/import_new")
+    @GetMapping("/product/import_new")
     public String importNew(@Valid ExportImportModel entity, BindingResult result, RedirectAttributes redirect, Principal principal) {
         if (result.hasErrors()) {
             return "import_form";
         }
         System.out.println("Entity to import: " + entity.toString());
         Product p = productService.getProductById(entity.getProductId());
-        System.out.println("pricipal.getName = " + principal.getName());
+        System.out.println("principal.getName = " + principal.getName());
         Employee e = employeeService.findByName(principal.getName());
         entity.setPrice(p.getPrice()*entity.getNumber());
         ImportProduct imp = Transfer.exportImportModelToImportProduct(entity, p, e);
@@ -91,7 +91,7 @@ public class EmployeeController {
         return "export_form";
     }
 
-    @PostMapping("/product/export_new")
+    @GetMapping("/product/export_new")
     public String exportNew(@Valid ExportImportModel entity, BindingResult result, RedirectAttributes redirect, Principal principal) {
         if (result.hasErrors()) {
             return "export_form";

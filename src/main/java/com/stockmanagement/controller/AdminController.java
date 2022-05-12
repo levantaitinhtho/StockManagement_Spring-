@@ -27,11 +27,32 @@ public class AdminController {
     public String getAdmin() {
         return "admin.html";
     }
+    @GetMapping("")
+    public String getInventory() {
+        return "home.html";
+    }
+    @GetMapping("user")
+    public String getUser() {
+        return "user.html";
+    }
+
+    @GetMapping("/login")
+    public String loginPage(){
+        return "login";
+    }
+    @GetMapping("/home")
+    public String getHome(){
+        return "home.html";
+    }
 
     @GetMapping("/admin/products")
     public String listProduct(Model model) {
         model.addAttribute("products", productService.getAllProduct());
         return "admin_list_product.html";
+    }
+    @GetMapping("/logout")
+    public String logout(){
+        return "home.html";
     }
 
     @GetMapping("/admin/product/search")
@@ -113,7 +134,7 @@ public class AdminController {
     public String deActiveEmployee(@PathVariable int id, RedirectAttributes redirect) {
         System.out.println("id: " + id);
         employeeService.deactiveEmployee(id);
-        redirect.addFlashAttribute("successMessage", "Deactive employee successfully!");
+        redirect.addFlashAttribute("successMessage", "Deactivate employee successfully!");
         return "redirect:/admin/emp";
     }
 

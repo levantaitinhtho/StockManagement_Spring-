@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -18,6 +19,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
         List<Employee> searchByName(@Param("user_name") String term);
 
         @Modifying
+        @Transactional
         @Query(value = "UPDATE Employee e SET e.status = 'deactive' WHERE e.id = :id")
         void deactiveEmployee(@Param("id") Integer id);
 }
